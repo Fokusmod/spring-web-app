@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Продуктовый Магазин</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+            integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <p></p>
+    <h1>Добавление товара</h1>
+    <form method="post" th:action="@{'/create'}">
+        <div class="mb-1 row">
+            <p></p>
+            <p></p>
+            <label for="productId" class="col-sm-1 col-form-label">Id</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="productId" name="id">
+            </div>
+        </div>
+        <div class="mb-1 row">
+            <label for="productTitle" class="col-sm-1 col-form-label">Title</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="productTitle" name="title">
+            </div>
+        </div>
+        <div class="mb-1 row">
+            <label for="productCost" class="col-sm-1 col-form-label">Cost</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="productCost" name="cost">
+            </div>
+        </div>
+        <p></p>
+        <p></p>
+        <button type="submit" class="btn btn-primary">Confirm</button>
+        <a th:href="@{'/'}" type="button" class="btn btn-primary">Cancel</a>
+    </form>
+</div>
+
+</body>
+</html>
