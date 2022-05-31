@@ -17,7 +17,9 @@
         <tr>
             <th scope="col">id</th>
             <th scope="col">title</th>
+            <th></th>
             <th scope="col">cost</th>
+            <th></th>
             <th scope="col"></th>
         </tr>
         </thead>
@@ -25,9 +27,12 @@
         <tr th:each="product : ${products}">
             <td th:text="${product.id}"></td>
             <td th:text="${product.title}"></td>
-            <td th:text="${product.cost}"></td>
-            <td><a th:href="@{'/show/' +${product.id}}" class="btn btn-primary">Show more</a></td>
 
+            <td><a th:href="@{'/sub/' + ${product.id}}" class="btn btn-primary">-</a></td> <!-- - -->
+            <td th:text="${product.cost}"></td>
+            <td><a th:href="@{'/add/' + ${product.id}}" class="btn btn-primary">+</a></td> <!-- + -->
+
+            <td><a th:href="@{'/show/' +${product.id}}" class="btn btn-primary">Show more</a></td>
         </tr>
         </tbody>
         </tbody>
