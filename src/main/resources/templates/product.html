@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Продуктовый Магазин</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+            integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <h1>Продуктовый Магазин</h1>
+        <h2>product information</h2>
+        <h4 th:text="${'ID: '+ product.id}"></h4>
+        <h4 th:text="${'Title: '+ product.title}"></h4>
+        <h4 th:text="${'Cost: '+ product.cost}"></h4>
+
+        <a th:href="@{'/'}" type="button" class="btn btn-primary">Return</a>
+
+<!--    <a th:href="@{'/create'}" type="button" class="btn btn-primary">Added</a>-->
+</div>
+</body>
+</html>
