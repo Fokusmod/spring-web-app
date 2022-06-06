@@ -28,4 +28,13 @@ public class ProductService {
     public void save(Product product) {
         repository.addProduct(product);
     }
+
+    public void addPrise (Long id) {
+        repository.addCost(Math.toIntExact(id));
+    }
+
+    public void subPrice (Long id) {
+        repository.subCost(Math.toIntExact(id));
+    }
+
 }

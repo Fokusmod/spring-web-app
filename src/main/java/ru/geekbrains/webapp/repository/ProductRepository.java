@@ -4,15 +4,13 @@ import org.springframework.stereotype.Repository;
 import ru.geekbrains.webapp.model.Product;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 
 @Repository
 public class ProductRepository {
     private List<Product> catalog;
+
 
     @PostConstruct
     public void init() {
@@ -29,11 +27,25 @@ public class ProductRepository {
     }
 
     public Product findProductById(Long id) {
-       return catalog.stream().filter(product -> product.getId() == id).findFirst().get();
+        return catalog.stream().filter(product -> product.getId() == id).findFirst().get();
     }
 
-    public void addProduct (Product product) {
+    public void addProduct(Product product) {
         catalog.add(product);
+    }
+
+    public void addCost(int id) {
+        int count = 1;
+        int beginValue = catalog.get(id).getCost();
+        beginValue += count;
+        catalog.get(id).setCost(beginValue);
+    }
+
+    public void subCost(int id) {
+        int count = 1;
+        int beginValue = catalog.get(id).getCost();
+        beginValue -= count;
+        catalog.get(id).setCost(beginValue);
     }
 
 
