@@ -1,29 +1,60 @@
 package ru.geekbrains.webapp.repository;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.geekbrains.webapp.model.Product;
 
 import javax.annotation.PostConstruct;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
-import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Repository
 public class ProductRepository {
+
+    private SessionFactory factory;
     private List<Product> catalog;
 
+    @Autowired
+    public ProductRepository() {
+        this.factory = new Configuration()
+                .configure("config/hibernate.xml")
+                .buildSessionFactory();
+    }
 
     @PostConstruct
     public void init() {
-        this.catalog = new ArrayList<>(Arrays.asList(
-                new Product(1L, "Apple", 100),
-                new Product(2L, "Banana", 70),
-                new Product(3L, "Orange", 120),
-                new Product(4L, "Papaya", 110)
-        ));
+        Session session;
+
+        try {
+            String sql = Files.lines(Paths.get("CreateTableProducts.sql")).collect(Collectors.joining(" "));
+            session = factory.getCurrentSession();
+            session.beginTransaction();
+            session.createNativeQuery(sql).executeUpdate();
+            session.getTransaction().commit();
+            catalog = findProduct();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public List<Product> findAll() {
         return Collections.unmodifiableList(catalog);
+    }
+
+    public List<Product> findProduct() {
+        List<Product> list;
+        try (Session session = factory.getCurrentSession()) {
+            session.beginTransaction();
+            list = session.createQuery("select a from Product a", Product.class).getResultList();
+            session.getTransaction().commit();
+        }
+        return list;
     }
 
     public Product findProductById(Long id) {
@@ -31,7 +62,12 @@ public class ProductRepository {
     }
 
     public void addProduct(Product product) {
-        catalog.add(product);
+        try (Session session = factory.getCurrentSession()){
+            session.beginTransaction();
+            session.save(product);
+            session.getTransaction().commit();
+        }
+        catalog = findProduct();
     }
 
     public void addCost(int id) {
