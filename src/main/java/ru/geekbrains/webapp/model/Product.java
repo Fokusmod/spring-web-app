@@ -1,15 +1,32 @@
 package ru.geekbrains.webapp.model;
 
-public class Product {
+import javax.persistence.*;
 
+@Entity
+@Table(name = "Products")
+public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
+    @Column(name = "title")
     private String title;
+    @Column(name = "cost")
     private int cost;
 
     public Product(long id, String title, int cost) {
         this.id = id;
         this.title = title;
         this.cost = cost;
+    }
+
+    public Product(String title, int cost) {
+        this.title = title;
+        this.cost = cost;
+    }
+
+    public Product() {
+
     }
 
     public long getId() {
@@ -34,5 +51,14 @@ public class Product {
 
     public void setCost(int cost) {
         this.cost = cost;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", cost=" + cost +
+                '}';
     }
 }

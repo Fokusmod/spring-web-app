@@ -31,8 +31,8 @@ public class ProductsController {
     }
 
     @PostMapping(value = "/create")
-    public String saveProduct(@RequestParam Long id, @RequestParam String title, @RequestParam int cost) {
-        productService.save(new Product(id,title,cost));
+    public String saveProduct(@RequestParam String title, @RequestParam int cost) {
+        productService.save(new Product(title,cost));
         return "redirect:/";
     }
 
