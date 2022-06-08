@@ -15,25 +15,13 @@ public class Main {
     public static void main(String[] args) {
 
         Service service = context.getBean(Service.class);
-        service.getCartBuyers(1L);
 
+
+
+        service.getCartBuyers(1L);
         service.setPrice(1L);
-
-
-
-
         service.addOrder(1L, 1L);
-
         service.getCartBuyers(1L);
-
-
-
-
-
-
     }
-
-
-
 
 }

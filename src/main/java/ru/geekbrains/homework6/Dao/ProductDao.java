@@ -42,7 +42,6 @@ public class ProductDao {
         session = factory.getCurrentSession();
         session.beginTransaction();
         Product product = session.get(Product.class, id);
-        System.out.println("Before cost = " + product.getCost());
         product.setCost(product.getCost() + 50);
         session.saveOrUpdate(product);
         session.getTransaction().commit();
@@ -55,7 +54,6 @@ public class ProductDao {
         session = factory.getCurrentSession();
         session.beginTransaction();
         Product product = session.get(Product.class, id);
-        System.out.println("Current Price = " + product.getCost());
         session.getTransaction().commit();
     }
 

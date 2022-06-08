@@ -13,7 +13,9 @@ package ru.geekbrains.homework6.model;
 //ВАЖНО И ОБЯЗАТЕЛЬНО! Dao классы и сервис должны являться Spring бинами (Вам нужен Spring Context без веб части).
 //   Контроллеры создавать не надо.
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 
 import javax.persistence.*;
 import java.util.List;

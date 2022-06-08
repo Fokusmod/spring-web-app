@@ -61,4 +61,15 @@ public class Order {
     public void setProduct_id(Long product_id) {
         this.product_id = product_id;
     }
+
+
+    @Override
+    public String toString() {
+        return "Order {" +
+                "id=" + id +
+                ", buyer_id=" + buyer_id +
+                ", product_id=" + product_id +
+                ", cost=" + cost +
+                '}';
+    }
 }
